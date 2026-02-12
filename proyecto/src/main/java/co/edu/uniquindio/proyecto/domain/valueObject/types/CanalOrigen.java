@@ -1,4 +1,4 @@
-package co.edu.uniquindio.proyecto.domain.valueObject;
+package co.edu.uniquindio.proyecto.domain.valueObject.types;
 
 public enum CanalOrigen {
     CSU,
