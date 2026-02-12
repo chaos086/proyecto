@@ -1,7 +1,7 @@
 package co.edu.uniquindio.proyecto.domain.entity;
 
 import co.edu.uniquindio.proyecto.domain.exception.DomainException;
-import co.edu.uniquindio.proyecto.domain.valueObject.types.Rol;
+import co.edu.uniquindio.proyecto.domain.valueObject.enums.Rol;
 
 import java.util.UUID;
 

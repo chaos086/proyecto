@@ -1,4 +1,4 @@
-package co.edu.uniquindio.proyecto.domain.valueObject.types;
+package co.edu.uniquindio.proyecto.domain.valueObject.enums;
 
 public enum EstadoSolicitud {
     REGISTRADA,

@@ -3,7 +3,7 @@ package co.edu.uniquindio.proyecto.domain.entity;
 import co.edu.uniquindio.proyecto.domain.exception.BusinessRuleViolation;
 import co.edu.uniquindio.proyecto.domain.exception.DomainException;
 import co.edu.uniquindio.proyecto.domain.valueObject.*;
-import co.edu.uniquindio.proyecto.domain.valueObject.types.*;
+import co.edu.uniquindio.proyecto.domain.valueObject.enums.*;
 
 
 import java.time.Instant;
