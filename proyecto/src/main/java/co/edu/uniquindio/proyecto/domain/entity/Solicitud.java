@@ -11,6 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Entidad que representa una solicitud (PQR) en el sistema.
+ * Es la raíz del agregado de Solicitud.
+ * 
+ * Ciclo de vida de una solicitud:
+ + 1. REGISTRADA - Cuando se crea la solicitud
+ + 2. CLASIFICADA - Cuando el coordinador define el tipo
+ + 3. EN_ATENCION - Cuando hay un docente responsable asignado
+ + 4. ATENDIDA - Cuando el docente marca como atendida
+ + 5. CERRADA - Cuando se completa el proceso
+ */
 public class Solicitud {
 
     private final SolicitudId id;
@@ -52,6 +63,13 @@ public class Solicitud {
         registrarHistorial("REGISTRAR_SOLICITUD", solicitante, "Solicitud registrada");
     }
 
+    /**
+     * Factory method para crear una nueva solicitud.
+     + solicitante Referencia del usuario que crea la solicitud
+     + canalOrigen Canal por el cual se recibió la solicitud
+     + descripcion Descripción de la solicitud
+     + Nueva instancia de Solicitud
+     */
     public static Solicitud crear(UsuarioReferencia solicitante, CanalOrigen canalOrigen, DescripcionSolicitud descripcion) {
         return new Solicitud(
                 SolicitudId.newId(),
@@ -62,6 +80,12 @@ public class Solicitud {
         );
     }
 
+    /**
+     * Clasifica la solicitud con un tipo específico.
+     * Solo aplicable cuando la solicitud está en estado REGISTRADA.
+     + tipo Tipo de solicitud (QUEJA, RECLAMO, SUGERENCIA, SOLICITUD)
+     + coordinador Usuario que realiza la clasificación
+     */
     public void clasificar(TipoSolicitud tipo, UsuarioReferencia coordinador) {
         asegurarNoCerrada();
         if (estado != EstadoSolicitud.REGISTRADA)
@@ -74,6 +98,13 @@ public class Solicitud {
         registrarHistorial("CLASIFICAR_SOLICITUD", coordinador, "Tipo: " + tipo);
     }
 
+    /**
+     * Asigna una prioridad a la solicitud.
+     * Solo aplicable cuando la solicitud está en estado CLASIFICADA.
+     * prioridad Prioridad asignada (ALTA, MEDIA, BAJA)
+     * justificacion Justificación de la prioridad
+     * coordinador Usuario que asigna la prioridad
+     */
     public void priorizar(Prioridad prioridad, JustificacionPrioridad justificacion, UsuarioReferencia coordinador) {
         asegurarNoCerrada();
         if (estado != EstadoSolicitud.CLASIFICADA)
@@ -87,6 +118,12 @@ public class Solicitud {
         registrarHistorial("PRIORIZAR_SOLICITUD", coordinador, "Prioridad: " + prioridad);
     }
 
+    /**
+     * Asigna un docente como responsable de atender la solicitud.
+     * Solo aplicable cuando la solicitud está en estado CLASIFICADA.
+     * responsable Usuario docente responsable
+     * coordinador Usuario que realiza la asignación
+     */
     public void asignarResponsable(Usuario responsable, UsuarioReferencia coordinador) {
         asegurarNoCerrada();
         if (responsable == null) throw new DomainException("Responsable es obligatorio");
@@ -101,6 +138,12 @@ public class Solicitud {
         registrarHistorial("ASIGNAR_RESPONSABLE", coordinador, "Responsable: " + responsable.nombre());
     }
 
+    /**
+     * Marca la solicitud como atendida por el responsable asignado.
+     * Solo aplicable cuando la solicitud está en estado EN_ATENCION.
+     + responsable Usuario que marca como atendida
+     + observacion Observación de la atención
+     */
     public void marcarAtendida(UsuarioReferencia responsable, String observacion) {
         asegurarNoCerrada();
         if (estado != EstadoSolicitud.EN_ATENCION)
@@ -114,6 +157,12 @@ public class Solicitud {
         registrarHistorial("MARCAR_ATENDIDA", responsable, observacion == null ? "Atendida" : observacion);
     }
 
+    /**
+     * Cierra la solicitud con una observación final.
+     * Solo aplicable cuando la solicitud está en estado ATENDIDA.
+     * responsable Usuario que cierra la solicitud
+     * observacionCierre Observación de cierre
+     */
     public void cerrar(UsuarioReferencia responsable, String observacionCierre) {
         asegurarNoCerrada();
         if (estado != EstadoSolicitud.ATENDIDA)

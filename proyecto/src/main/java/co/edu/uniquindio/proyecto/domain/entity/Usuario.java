@@ -9,6 +9,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Entidad que representa un usuario del sistema de PQRS universitario.
+ * Es la raíz del agregado de Usuario.
+
+ * Un usuario puede ser:
+ * - ESTUDIANTE: Puede crear solicitudes.
+ * - DOCENTE: Puede ser asignado como responsable de solicitudes.
+ * - COORDINADOR: Puede clasificar, priorizar y asignar responsables.
+ * 
+ * Sistema PQRS
+ */
 public class Usuario {
 
     private final IdentificacionUsuario id;
@@ -30,6 +41,12 @@ public class Usuario {
         this.solicitudesRegistradas = new ArrayList<>();
     }
 
+    /**
+     * Factory method para crear un nuevo usuario activo.
+     + nombre Nombre completo del usuario
+     + rol Rol del usuario en el sistema
+     + Nueva instancia de Usuario
+     */
     public static Usuario crear(String nombre, Rol rol) {
         return new Usuario(IdentificacionUsuario.newId(), nombre, rol, true);
     }
@@ -39,9 +56,21 @@ public class Usuario {
     public Rol rol() { return rol; }
     public boolean activo() { return activo; }
 
+    /**
+     + Desactiva el usuario (no puede crear ni atender solicitudes).
+     */
     public void desactivar() { this.activo = false; }
+
+    /**
+     + Activa el usuario para participar en el sistema.
+     */
     public void activar() { this.activo = true; }
 
+    /**
+     + Agrega una referencia a una solicitud registrada por este usuario.
+     + Mantiene la trazabilidad de las solicitudes creadas.
+     + solicitudRef Referencia a la solicitud
+     */
     public void agregarSolicitudRegistrada(UsuarioReferencia solicitudRef) {
         if (solicitudRef == null) {
             throw new DomainException("No se puede agregar una referencia de solicitud null");
