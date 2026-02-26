@@ -1,7 +1,7 @@
 package co.edu.uniquindio.proyecto.infrastructure.api;
 
 import co.edu.uniquindio.proyecto.application.UsuarioApplicationService;
-import co.edu.uniquindio.proyecto.domain.entity.Usuario;
+import co.edu.uniquindio.proyecto.infrastructure.entity.Usuario;
 import co.edu.uniquindio.proyecto.domain.valueObject.IdentificacionUsuario;
 import co.edu.uniquindio.proyecto.domain.valueObject.enums.Rol;
 import org.springframework.http.ResponseEntity;

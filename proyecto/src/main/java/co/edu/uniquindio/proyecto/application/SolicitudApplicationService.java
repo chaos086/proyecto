@@ -1,7 +1,7 @@
 package co.edu.uniquindio.proyecto.application;
 
-import co.edu.uniquindio.proyecto.domain.entity.Solicitud;
-import co.edu.uniquindio.proyecto.domain.entity.Usuario;
+import co.edu.uniquindio.proyecto.infrastructure.entity.Solicitud;
+import co.edu.uniquindio.proyecto.infrastructure.entity.Usuario;
 import co.edu.uniquindio.proyecto.domain.exception.DomainException;
 import co.edu.uniquindio.proyecto.domain.service.SolicitudDomainService;
 import co.edu.uniquindio.proyecto.domain.valueObject.*;

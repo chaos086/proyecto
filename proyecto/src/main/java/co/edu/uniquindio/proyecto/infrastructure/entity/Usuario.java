@@ -1,4 +1,4 @@
-package co.edu.uniquindio.proyecto.domain.entity;
+package co.edu.uniquindio.proyecto.infrastructure.entity;
 
 import co.edu.uniquindio.proyecto.domain.exception.DomainException;
 import co.edu.uniquindio.proyecto.domain.valueObject.IdentificacionUsuario;

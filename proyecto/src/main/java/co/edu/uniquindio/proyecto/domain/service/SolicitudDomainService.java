@@ -1,7 +1,7 @@
 package co.edu.uniquindio.proyecto.domain.service;
 
-import co.edu.uniquindio.proyecto.domain.entity.Solicitud;
-import co.edu.uniquindio.proyecto.domain.entity.Usuario;
+import co.edu.uniquindio.proyecto.infrastructure.entity.Solicitud;
+import co.edu.uniquindio.proyecto.infrastructure.entity.Usuario;
 import co.edu.uniquindio.proyecto.domain.exception.BusinessRuleViolation;
 import co.edu.uniquindio.proyecto.domain.valueObject.enums.EstadoSolicitud;
 import co.edu.uniquindio.proyecto.domain.valueObject.enums.Rol;

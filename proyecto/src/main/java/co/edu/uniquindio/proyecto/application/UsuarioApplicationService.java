@@ -1,6 +1,6 @@
 package co.edu.uniquindio.proyecto.application;
 
-import co.edu.uniquindio.proyecto.domain.entity.Usuario;
+import co.edu.uniquindio.proyecto.infrastructure.entity.Usuario;
 import co.edu.uniquindio.proyecto.domain.valueObject.IdentificacionUsuario;
 import co.edu.uniquindio.proyecto.domain.valueObject.enums.Rol;
 import co.edu.uniquindio.proyecto.infrastructure.persistence.UsuarioRepository;
